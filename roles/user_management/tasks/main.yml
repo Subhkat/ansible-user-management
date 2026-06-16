@@ -1,0 +1,22 @@
+---
+# tasks file for roles/user_management
+
+- name: Create group
+  group:
+    name: "{{ group_name }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ item }}"
+    group: "{{ group_name }}"
+    shell: /bin/bash
+    create_home: yes
+    state: present
+  loop: "{{ users }}"
+
+- name: Configure sudo access
+  copy:
+    src: admins
+    dest: /etc/sudoers.d/admins
+    mode: '0440'

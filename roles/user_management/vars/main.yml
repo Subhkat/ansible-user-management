@@ -1,0 +1,9 @@
+---
+# vars file for roles/user_management
+
+users:
+  - devops
+  - monitoring
+  - automation
+
+group_name: admins
